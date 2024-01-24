@@ -1,0 +1,79 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="event_handling.css">
+    <title>Event_Handling Document</title>
+</head>
+
+<body>
+    <h1>Event_Handling examples</h1>
+    <button id="myButton">Click me</button>
+
+    <form id="myForm">
+        <label for="textInput">Enter text:</label>
+        <input type="text" id="textInput" name="text">
+        <button type="submit">Submit</button>
+    </form>
+
+    <ul id="myList">
+        <li>Item 1</li>
+        <li>Item 2</li>
+        <li>Item 3</li>
+    </ul>
+    <script>
+        /* 1. Event Listener Setup */
+
+        var myButton = document.getElementById("myButton");
+        function handleClick() {
+            alert("Button clicked!");
+        }
+
+        myButton.addEventListener("click", handleClick);
+
+
+
+        /* 2. Event Object */
+
+        var myButton = document.getElementById("myButton");
+        function handleClick(event) {
+            console.log("Event type: " + event.type);
+            console.log("Mouse coordinates: (" + event.clientX + ", " + event.clientY + ")");
+            alert("Button clicked!");
+        }
+        myButton.addEventListener("click", handleClick);
+
+
+        /* 3. Preventing Default Behavior */
+
+        var myForm = document.getElementById("myForm");
+        function handleSubmit(event) {
+            // Prevent the default form submission behavior
+            event.preventDefault();
+
+            // Access the value of the text input
+            var inputValue = document.getElementById("textInput").value;
+            console.log("Input value: " + inputValue);
+        }
+        myForm.addEventListener("submit", handleSubmit);
+
+
+        /* 4. Event Delegation */
+        var myList = document.getElementById("myList");
+        myList.addEventListener("click", function (event) {
+            // Check if the clicked element is an li element
+            if (event.target.tagName === 'LI') {
+                // Access the text content of the clicked li element
+                var clickedItem = event.target.textContent;
+                console.log("Clicked item: " + clickedItem);
+            }
+        });
+    </script>
+
+</body>
+</script>
+
+</body>
+
+</html>
